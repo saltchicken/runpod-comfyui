@@ -38,8 +38,6 @@ RUN git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git && \
 
 RUN git clone https://github.com/Smirnov75/ComfyUI-mxToolkit.git
 
-RUN git clone https://github.com/orssorbit/ComfyUI-wanBlockswap.git
-
 RUN git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git
 
 # 6. Setup the start script
