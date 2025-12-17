@@ -64,6 +64,32 @@ else
   mv /ComfyUI/input /workspace/input && ln -s /workspace/input /ComfyUI/input
 fi
 
+echo "Processing workflows..."
+
+# Define exact paths
+WORKFLOW_CONTAINER="/ComfyUI/user/default/workflows"
+WORKFLOW_PERSIST="/workspace/workflows"
+
+# Ensure the parent directory exists in the container, or the move/link will fail
+mkdir -p "/ComfyUI/user/default"
+
+# Logic to link workflows
+if [ -d "$WORKFLOW_PERSIST" ]; then
+  # If we have saved workflows, use them
+  echo "  Found existing workflows in workspace. Linking..."
+  rm -rf "$WORKFLOW_CONTAINER"
+  ln -s "$WORKFLOW_PERSIST" "$WORKFLOW_CONTAINER"
+else
+  # If no saved workflows, check if the container has defaults to move
+  echo "  No workflows in workspace. Setup new persistence..."
+  if [ -d "$WORKFLOW_CONTAINER" ]; then
+    mv "$WORKFLOW_CONTAINER" "$WORKFLOW_PERSIST"
+  else
+    mkdir -p "$WORKFLOW_PERSIST"
+  fi
+  ln -s "$WORKFLOW_PERSIST" "$WORKFLOW_CONTAINER"
+fi
+
 echo "--- Launching ComfyUI ---"
 cd /ComfyUI
 python main.py --listen 0.0.0.0 --port 8188
