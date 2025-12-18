@@ -91,13 +91,11 @@ else
 fi
 
 echo "--- Launching Jupyter Lab ---"
-# Use JUPYTER_TOKEN env var if you want a fixed token, otherwise check logs for the random one.
 if [ -n "$JUPYTER_TOKEN" ]; then
   echo "Using provided JUPYTER_TOKEN."
   jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token="$JUPYTER_TOKEN" --notebook-dir=/ &
 else
-  echo "No JUPYTER_TOKEN provided. Check logs for generated token."
-  jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --notebook-dir=/ &
+  echo "No JUPYTER_TOKEN provided. Skipping Jupyter Lab startup."
 fi
 
 echo "--- Launching ComfyUI ---"
