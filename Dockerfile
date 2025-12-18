@@ -1,4 +1,3 @@
-# Updated Base Image: PyTorch 2.4.0 / Python 3.11 / CUDA 12.4.1
 FROM runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -14,7 +13,6 @@ WORKDIR /
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git
 
 # 3. Install Python dependencies
-# REMOVED the numpy<2.0 pin. Pip will now naturally install Numpy 2.x
 WORKDIR /ComfyUI
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
@@ -30,8 +28,7 @@ RUN git clone https://github.com/city96/ComfyUI-GGUF.git && \
 RUN git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git && \
     pip install -r ComfyUI-VideoHelperSuite/requirements.txt
 
-RUN git clone https://github.com/DoctorDiffusion/ComfyUI-MediaMixer.git && \
-    pip install -r ComfyUI-MediaMixer/requirements.txt
+RUN git clone https://github.com/saltchicken/ComfyUI-Video-Utils.git
 
 RUN git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git
 
