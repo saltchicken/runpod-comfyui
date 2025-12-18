@@ -30,8 +30,6 @@ RUN git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git && \
 
 RUN git clone https://github.com/saltchicken/ComfyUI-Video-Utils.git
 
-RUN git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git
-
 # 6. Setup the start script
 WORKDIR /
 COPY start.sh /start.sh
