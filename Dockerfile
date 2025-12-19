@@ -23,9 +23,6 @@ WORKDIR /ComfyUI/custom_nodes
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git
 
 # 5. Install necessary custom nodes
-RUN git clone https://github.com/city96/ComfyUI-GGUF.git && \
-    pip install -r ComfyUI-GGUF/requirements.txt
-
 RUN git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git && \
     pip install -r ComfyUI-VideoHelperSuite/requirements.txt
 
