@@ -30,6 +30,11 @@ RUN git clone https://github.com/saltchicken/ComfyUI-Video-Utils.git
 
 RUN git clone https://github.com/saltchicken/ComfyUI-StopAndGo.git
 
+RUN git clone https://github.com/Chaoses-Ib/ComfyScript.git && \
+    cd ComfyScript && \
+    pip install -e ".[default]" && \
+    cd ..
+
 # 6. Setup the start script
 WORKDIR /
 COPY start.sh /start.sh
