@@ -90,6 +90,25 @@ else
   ln -s "$WORKFLOW_PERSIST" "$WORKFLOW_CONTAINER"
 fi
 
+# ‼️ START NEW SSH CONFIGURATION ‼️
+echo "--- Configuring SSH ---"
+if [ "$PUBLIC_KEY" ]; then
+  mkdir -p /root/.ssh
+  chmod 700 /root/.ssh
+  echo "$PUBLIC_KEY" >>/root/.ssh/authorized_keys
+  chmod 600 /root/.ssh/authorized_keys
+  echo "Public key added to authorized_keys"
+
+  # Ensure root login is permitted (useful for some base images)
+  sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+  service ssh start
+  echo "SSH Service Started"
+else
+  echo "No PUBLIC_KEY found. SSH skipped."
+fi
+# ‼️ END NEW SSH CONFIGURATION ‼️
+
 echo "--- Launching Jupyter Lab ---"
 if [ -n "$JUPYTER_TOKEN" ]; then
   echo "Using provided JUPYTER_TOKEN."
