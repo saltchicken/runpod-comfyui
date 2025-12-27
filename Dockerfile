@@ -1,5 +1,4 @@
-FROM runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
-
+FROM runpod/pytorch:1.0.3-cu1290-torch291-ubuntu2204
 ENV DEBIAN_FRONTEND=noninteractive
 
 # 1. Install system tools
@@ -24,8 +23,8 @@ WORKDIR /ComfyUI/custom_nodes
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git
 
 # 5. Install necessary custom nodes
-RUN git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git && \
-    pip install -r ComfyUI-VideoHelperSuite/requirements.txt
+# RUN git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git && \
+#     pip install -r ComfyUI-VideoHelperSuite/requirements.txt
 
 RUN git clone https://github.com/saltchicken/ComfyUI-Video-Utils.git
 
