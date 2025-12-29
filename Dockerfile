@@ -16,19 +16,28 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI.git
 WORKDIR /ComfyUI
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt && \
-    pip install jupyterlab
+    pip install --force-reinstall "jupyterlab<4" "notebook<7" "jupyter-server<2"
 
 # 4. Install ComfyUI Manager
 WORKDIR /ComfyUI/custom_nodes
-RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git
+RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git && \
+    pip install -r ComfyUI-Manager/requirements.txt
 
 # 5. Install necessary custom nodes
-# RUN git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git && \
-#     pip install -r ComfyUI-VideoHelperSuite/requirements.txt
+RUN git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git && \
+    pip install -r ComfyUI-VideoHelperSuite/requirements.txt
 
 RUN git clone https://github.com/saltchicken/ComfyUI-Video-Utils.git
 
-RUN git clone https://github.com/saltchicken/ComfyUI-StopAndGo.git
+# RUN git clone https://github.com/saltchicken/ComfyUI-StopAndGo.git
+
+RUN git clone https://github.com/shootthesound/comfyUI-LongLook.git
+
+RUN git clone https://github.com/ltdrdata/ComfyUI-Impact-Pack comfyui-impact-pack && \
+    pip install -r comfyui-impact-pack/requirements.txt
+
+RUN git clone https://github.com/kijai/ComfyUI-KJNodes.git && \
+    pip install -r ComfyUI-KJNodes/requirements.txt
 
 RUN git clone https://github.com/Chaoses-Ib/ComfyScript.git && \
     cd ComfyScript && \
